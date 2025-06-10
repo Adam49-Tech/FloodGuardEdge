@@ -1,33 +1,54 @@
-🌊 FloodGuardEdge
-AI-powered flood prediction and early warning system for Nigerian cities using satellite and environmental data.
-📌 Overview
-FloodGuardEdge is a smart flood risk mapping tool that uses satellite data and machine learning to detect high-risk areas and send early alerts to communities. It helps emergency agencies, planners, and residents prepare for floods in advance.
-🚨 Problem
-Urban flooding in Nigeria causes major damage yearly — homes are destroyed, lives are lost, and the economy suffers. Most flood-vulnerable communities lack reliable early warning tools.
-💡 Solution
-FloodGuardEdge:
-- Uses AI to predict flood-prone zones.
-- Visualizes flood risk on an interactive map.
-- Sends SMS alerts to users in danger zones.
-- Is open-source and deployable on local or cloud infrastructure.
-🧠 AI Component
-We train a machine learning model (Random Forest or CNN) on rainfall, elevation, drainage, and land cover data to classify regions by flood risk level.
-🔧 Tech Stack
-- 🛰️ Google Earth Engine (for remote sensing data)
-- 🐍 Python (GeoPandas, Rasterio, Scikit-learn)
-- 🗺️ QGIS
-- 🌐 Streamlit (web app)
-- 📲 Twilio API (SMS alerts)
-- 🗄️ GitHub (project code + hosting)
-🗂️ Data Sources
-- CHIRPS Rainfall
-- SRTM Elevation
-- ESA WorldCover or OSM
-- NDMA Flood Reports (or news archives)
-📽️ Demo Video
-[Coming soon…]
-👥 Fellow
-Fellow Name:  Egwu Adam Joseph
-Fellow ID: FE/23/64924155
+FloodGuardEdge 🌊
+AI-powered Flood Risk Monitoring and Visualization Tool
 ---
-> Built for the 3MTT June Knowledge Showcase: (#My3MTT #3MTTLearningCommunity)
+❗ Problem Statement
+Flooding is a recurring and devastating issue in Nigeria, especially in states like Benue, Kogi, Lagos, Abuja, Niger, Borno, Anambra and Bayelsa. It disrupts lives, destroys property, and poses significant environmental and economic challenges.
+There is an urgent need for predictive, accessible, and real-time flood risk monitoring tools to aid early warning and disaster preparedness.
+---
+🚀 Overview
+FloodGuardEdge is a prototype that predicts and visualizes flood risk areas using satellite rainfall and elevation data for key Nigerian states.
+This project was developed for the 3MTT Knowledge Showcase to demonstrate how machine learning and geospatial analysis can be combined to address real-world environmental challenges.
+---
+🌍 Key Features
+📌 Focus Areas: Benue, Abuja, Niger, Lagos, Kogi, Bayelsa, Anambra, Borno
+☔ Data Used: CHIRPS Rainfall, SRTM Elevation (Google Earth Engine)
+🧠 Model: Logistic Regression for flood risk prediction
+🔄 Interactivity: Adjustable rainfall thresholds and region selection
+🎯 Output: Dynamic flood risk maps with user-controlled parameters
+---
+💾 Project Structure
+FloodGuardEdge/
+│
+├── pre-processing/
+│   ├── prepare_data.py
+│   ├── generate_training_data.py
+│   ├── train_model.py
+│   ├── predict_flood_risk.py
+│   └── visualize_prediction.py
+│
+├── processed/
+│   ├── flood_risk_map.tif
+│   ├── flood_map_visual.png
+│   └── training_data.csv
+│
+├── data/
+│   ├── CHIRPS_AprilOct2024.tif
+│   └── SRTM_Elevation_Reduced.tif
+│
+├── app.py
+└── README.md
+---
+🛠️ How to Run the App
+1. Clone the Repository
+git clone https://github.com/Adam49-Tech/FloodGuardEdge.git
+2. Install Required Libraries
+pip install -r requirements.txt
+3. Run the App
+streamlit run app.py
+---
+📊 Data Sources
+CHIRPS Rainfall: Climate Hazards Group
+SRTM Elevation: NASA / Google Earth Engine
+---
+🌟 About the Developer
+Built as part of the 3MTT Knowledge Showcase 2025 to demonstrate real-world AI solutions for environmental management in Nigeria.
