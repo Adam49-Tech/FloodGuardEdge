@@ -18,7 +18,16 @@ region_map = np.random.choice(['North Central', 'North East', 'North West', 'Sou
 # Sidebar Filters
 st.sidebar.header("🛠️ Filter Options")
 # Rainfall Threshold Slider
-threshold = st.sidebar.slider("Select Rainfall Threshold (mm)", min_value=float(rainfall_array.min()), max_value=float(rainfall_array.max()), value=50.0)
+min_rainfall = float(np.min(rainfall_array))
+max_rainfall = float(np.max(rainfall_array))
+if min_rainfall == max_rainfall:
+    st.warning("Rainfall values are constant. Slider disabled.")
+    rainfall_threshold = min_rainfall
+else:
+    rainfall_threshold = st.slider('Rainfall Threshold (mm)',
+                                   min_value=min_rainfall,
+                                   max_value=max_rainfall,
+                                   value=(min_rainfall + max_rainfall) / 2)
 # Region Filter
 region = st.sidebar.selectbox("Select Region (Geopolitical Zone)", options=['All', 'North Central', 'North East', 'North West', 'South East', 'South South', 'South West'])
 # Severity Filter
