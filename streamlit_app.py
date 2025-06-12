@@ -1,5 +1,6 @@
 import streamlit as st
 import numpy as np
+import geopandas as gpd
 import rasterio
 import matplotlib.pyplot as plt
 # Set up Streamlit page
@@ -11,7 +12,9 @@ flood_risk = np.load('processed/flood_risk_prediction.npy')
 # Load rainfall data and handle NaN values
 rainfall_array = np.load('processed/rainfall_array.npy')
 rainfall_array = np.nan_to_num(rainfall_array, nan=0.0)  # Replace NaN with 0.0
-# Simulate a region map (replace with real data when available)
+# Load Nigeria shapefile using GeoPandas
+nigeria_shape = gpd.read_file('shapefiles/gadm41_NGA_1.shp')
+# Simulate a region map (replace with real region map later)
 region_map = np.random.choice(['North Central', 'North East', 'North West', 'South East', 'South South', 'South West'], size=flood_risk.shape)
 # Sidebar Filters
 st.sidebar.header("🛠️ Filter Options")
@@ -46,11 +49,13 @@ if severity != 'All':
         filtered_map = np.where((filtered_map > 0.3) & (filtered_map <= 0.6), filtered_map, 0)
     elif severity == 'High':
         filtered_map = np.where(filtered_map > 0.6, filtered_map, 0)
-# Display the filtered map
+# Display the flood risk map with Nigeria boundary
 fig, ax = plt.subplots(figsize=(10, 8))
 cax = ax.imshow(filtered_map, cmap='YlOrRd', interpolation='none')
 fig.colorbar(cax, ax=ax, label='Flood Risk Level')
-ax.set_title("Predicted Flood Risk Map (Filtered)")
+# Plot Nigeria shapefile boundary
+nigeria_shape.boundary.plot(ax=ax, edgecolor='black', linewidth=1)
+ax.set_title("Predicted Flood Risk Map (Filtered) - Nigeria Boundary")
 st.pyplot(fig)
 # Footer
 st.write("© 2025 FloodGuardEdge - Developed by Adam49-Tech")
