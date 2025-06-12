@@ -33,7 +33,7 @@ region = st.sidebar.selectbox("Select Region (Geopolitical Zone)", options=['All
 # Severity Filter
 severity = st.sidebar.selectbox("Select Flood Severity", options=['All', 'Low', 'Medium', 'High'])
 # Apply Rainfall Threshold
-filtered_map = np.where(rainfall_array >= threshold, flood_risk, 0)
+filtered_map = np.where(rainfall_array >= rainfall_threshold, flood_risk, 0)
 # Apply Region Filter
 if region != 'All':
     region_mask = (region_map == region)
