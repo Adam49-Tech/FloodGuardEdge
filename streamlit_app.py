@@ -7,8 +7,12 @@ import matplotlib.pyplot as plt
 st.set_page_config(page_title="FloodGuardEdge - Flood Risk Prediction", layout="wide")
 st.title("🌊 FloodGuardEdge - Flood Risk Prediction App")
 st.write("An interactive tool to visualize predicted flood risks based on rainfall and elevation data.")
-# Load flood risk prediction
-flood_risk = np.load('processed/flood_risk_prediction.npy')
+# Load flood risk GeoTIFF with geospatial reference
+flood_risk_path = 'processed/flood_risk_map.tif'
+with rasterio.open(flood_risk_path) as src:
+    flood_risk = src.read(1)
+    flood_risk_bounds = src.bounds
+    flood_risk_extent = [flood_risk_bounds.left, flood_risk_bounds.right, flood_risk_bounds.bottom, flood_risk_bounds.top]
 # Load rainfall data and handle NaN values
 rainfall_array = np.load('processed/rainfall_array.npy')
 rainfall_array = np.nan_to_num(rainfall_array, nan=0.0)  # Replace NaN with 0.0
@@ -51,11 +55,11 @@ if severity != 'All':
         filtered_map = np.where(filtered_map > 0.6, filtered_map, 0)
 # Display the flood risk map with Nigeria boundary
 fig, ax = plt.subplots(figsize=(10, 8))
-cax = ax.imshow(filtered_map, cmap='YlOrRd', interpolation='none')
+cax = ax.imshow(filtered_map, cmap='YlOrRd', interpolation='none', extent=flood_risk_extent, origin='upper')
 fig.colorbar(cax, ax=ax, label='Flood Risk Level')
 # Plot Nigeria shapefile boundary
 nigeria_shape.boundary.plot(ax=ax, edgecolor='black', linewidth=1)
-ax.set_title("Predicted Flood Risk Map (Filtered) - Nigeria Boundary")
+ax.set_title("Predicted Flood Risk Map (Georeferenced)")
 st.pyplot(fig)
 # Footer
 st.write("© 2025 FloodGuardEdge - Developed by Adam49-Tech")
