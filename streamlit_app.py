@@ -61,5 +61,24 @@ fig.colorbar(cax, ax=ax, label='Flood Risk Level')
 nigeria_shape.boundary.plot(ax=ax, edgecolor='black', linewidth=1)
 ax.set_title("Predicted Flood Risk Map (Georeferenced)")
 st.pyplot(fig)
+import pandas as pd
+import io
+# Sidebar Header for Download
+st.sidebar.header("📥 Download Options")
+# Progress Spinner for Download Preparation
+with st.spinner('Preparing download...'):
+    # Convert the filtered map to a DataFrame
+    filtered_df = pd.DataFrame(filtered_map)
+    # Convert DataFrame to CSV
+    csv = filtered_df.to_csv(index=False)
+    csv_bytes = csv.encode()
+# Download Button
+st.sidebar.download_button(
+    label="Download Filtered Map as CSV",
+    data=csv_bytes,
+    file_name="filtered_flood_risk_map.csv",
+    mime="text/csv"
+)
+st.success('Download ready!')
 # Footer
 st.write("© 2025 FloodGuardEdge - Developed by Adam49-Tech")
