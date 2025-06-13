@@ -1,20 +1,38 @@
-FloodGuardEdge 🌊
-AI-powered Flood Risk Monitoring and Visualization Tool
----
-❗ Problem Statement
-Flooding is a recurring and devastating issue in Nigeria, especially in states like Benue, Kogi, Lagos, Abuja, Niger, Borno, Anambra and Bayelsa. It disrupts lives, destroys property, and poses significant environmental and economic challenges.
-There is an urgent need for predictive, accessible, and real-time flood risk monitoring tools to aid early warning and disaster preparedness.
----
-🚀 Overview
-FloodGuardEdge is a prototype that predicts and visualizes flood risk areas using satellite rainfall and elevation data for key Nigerian states.
-This project was developed for the 3MTT Knowledge Showcase to demonstrate how machine learning and geospatial analysis can be combined to address real-world environmental challenges.
----
-🌍 Key Features
-📌 Focus Areas: Benue, Abuja, Niger, Lagos, Kogi, Bayelsa, Anambra, Borno
-☔ Data Used: CHIRPS Rainfall, SRTM Elevation (Google Earth Engine)
-🧠 Model: Logistic Regression for flood risk prediction
-🔄 Interactivity: Adjustable rainfall thresholds and region selection
-🎯 Output: Dynamic flood risk maps with user-controlled parameters
+FloodGuardEdge – Predicting Urban Flood Risk Using Satellite Data 🌊
+🚀 Project Overview
+FloodGuardEdge is an interactive AI-powered flood risk prediction app that visualizes flood-prone areas across Nigeria using satellite-derived rainfall and elevation data. This tool is designed to support communities, planners, and emergency responders in flood risk assessment.
+🌧️ Problem
+Urban flooding in Nigeria frequently causes significant damage to lives, property, and infrastructure. Many areas lack localized, real-time flood prediction systems.
+✅ Solution
+FloodGuardEdge provides:
+- Real-time flood risk mapping
+- Rainfall and severity-based filtering
+- State-level zooming and analysis
+- Downloadable flood risk maps in CSV and PNG formats
+🔧 Technology Stack
+- Python
+- Streamlit
+- Google Earth Engine
+- GeoPandas, Rasterio, Matplotlib
+- GitHub and Streamlit Cloud
+🎯 Key Features
+- Interactive flood risk map with Nigeria’s boundary
+- Rainfall threshold slider
+- Flood severity filtering (Low, Medium, High)
+- State filtering and zooming
+- CSV and PNG download options
+- Progress spinner for real-time feedback
+📂 Project Structure
+FloodGuardEdge/ ├── data/ ├── processed/ ├── shapefiles/ ├── pre-processing/ ├── streamlit_app.py ├── README.md └── requirements.txt
+🔗 Demo
+[Live Streamlit App](https://floodguardedgeai.streamlit.app)
+🔗 GitHub
+[GitHub Repository](https://github.com/Adam49-Tech/FloodGuardEdge)
+🚀 Future Work
+- Integration of real-time flood alerts via SMS or Email.
+- Adding more predictive variables (drainage, land cover, soil type).
+- Automated data updates from Google Earth Engine.
+👤 Developed by Adam49-Tech
 ---
 💾 Project Structure
 FloodGuardEdge/
@@ -35,7 +53,7 @@ FloodGuardEdge/
 │   ├── CHIRPS_AprilOct2024.tif
 │   └── SRTM_Elevation_Reduced.tif
 │
-├── app.py
+├── streamlit_app.py
 └── README.md
 ---
 🛠️ How to Run the App
